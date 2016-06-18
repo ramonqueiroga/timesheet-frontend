@@ -1,0 +1,5 @@
+#Ignorar tudo que esta dentro da pasta node_modules
+node_modules/
+
+#Ignorar arquivos de ide
+.idea/
