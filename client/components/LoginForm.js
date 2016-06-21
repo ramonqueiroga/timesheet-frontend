@@ -4,7 +4,7 @@ const LoginForm = React.createClass({
     render() {
         return (
             <div>
-                Formulario de login!
+                Formulario de login.
             </div>
         )
     }
