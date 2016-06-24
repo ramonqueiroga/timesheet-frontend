@@ -7,11 +7,14 @@ import rootReducer from './reducers/index';
 //objeto com o estado inicial padrao
 
 const defaultState = {
-    description: 'Aplicação iniciada'
+    description: 'Aplicação iniciada',
+    initialData: 'Seja bem vindo ao sistema de controle de horas TimeSheet!'
 };
 
-const store = createStore(rootReducer, defaultState);
-const history = syncHistoryWithStore(browserHistory, store);
+const enhancers = compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+);
 
+const store = createStore(rootReducer, defaultState, enhancers);
+export const history = syncHistoryWithStore(browserHistory, store);
 export default store;
-export default history;
