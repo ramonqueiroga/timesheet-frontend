@@ -6,10 +6,7 @@ import rootReducer from './reducers/index';
 
 //objeto com o estado inicial padrao
 
-const defaultState = {
-    description: 'Aplicação iniciada',
-    initialData: 'Seja bem vindo ao sistema de controle de horas TimeSheet!'
-};
+const defaultState = {};
 
 const enhancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
