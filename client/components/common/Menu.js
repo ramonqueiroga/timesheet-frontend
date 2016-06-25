@@ -1,6 +1,8 @@
 import React from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
+import Icon from 'react-icon';
 
 const Menu = React.createClass({
     render() {
@@ -14,8 +16,10 @@ const Menu = React.createClass({
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem eventKey={1} href="#">Cadastro de horas</NavItem>
-                        <NavItem eventKey={2} onClick={this.props.getProdutos.bind(null, 'teste')}>Produtos</NavItem>
+                        <NavItem eventKey={1}>Cadastro de horas</NavItem>
+                        <LinkContainer to="/produtos">
+                            <NavItem eventKey={2}>Produtos</NavItem>
+                        </LinkContainer>
                         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Action</MenuItem>
                             <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -25,8 +29,9 @@ const Menu = React.createClass({
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Link Right</NavItem>
-                        <NavItem eventKey={2} href="#">Link Right</NavItem>
+                        <LinkContainer to="/login">
+                            <NavItem eventKey={1} href="#"><Icon glyph="start" />Login</NavItem>
+                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
