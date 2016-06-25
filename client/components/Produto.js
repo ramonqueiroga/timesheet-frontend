@@ -21,10 +21,20 @@ const Produto = React.createClass({
         });
     },
 
+    renderComment(content, index) {
+        return (
+            <div className="main" key={index}>
+                <p>
+                    <strong>{content.descricao}</strong>
+                </p>
+            </div>
+        )
+    },
+
     render() {
         return (
-            <div>
-                Tela de produtos
+            <div className="main">
+                <p>{this.props.payload ? this.props.payload.map(this.renderComment) : '' }</p>
             </div>
         )
     }
@@ -32,7 +42,7 @@ const Produto = React.createClass({
 
 function mapStateToProps(state) {
     return {
-        payload: { ...state.produto.payload }
+        payload: state.produto.payload
     }
 }
 

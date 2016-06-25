@@ -2,9 +2,9 @@ function produto(state = [], action) {
     switch (action.type) {
         case 'GET_PRODUTOS':
             return {
-                ...state, payload: action.payload
+                ...state,
+                payload :[ ...action.payload ]
             }
-
         default:
             break;
     }
