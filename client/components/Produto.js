@@ -34,7 +34,7 @@ const Produto = React.createClass({
     render() {
         return (
             <div className="main">
-                <p>{this.props.payload ? this.props.payload.map(this.renderComment) : '' }</p>
+                {this.props.payload ? this.props.payload.map(this.renderComment) : '' }
             </div>
         )
     }
