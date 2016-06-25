@@ -1,6 +1,7 @@
 import React from 'react';
 import rest from 'rest-js';
 import { connect } from 'react-redux';
+import { Table } from 'react-bootstrap';
 
 const Produto = React.createClass({
 
@@ -8,7 +9,9 @@ const Produto = React.createClass({
         const restApi = rest('http://localhost:8080/timesheet/', { crossDomain: true });
         const { props } = this;
         let response = {};
-        restApi.get('api/produtos', function(error, data) {
+        restApi.get('api/produtos',
+            {defaultFormat: 'json', defaultDataType: 'json', crossDomain: false, cacheLifetime: 50000},
+            function(error, data) {
             if(error) {
                 response = {
                     error: true,
@@ -21,20 +24,35 @@ const Produto = React.createClass({
         });
     },
 
-    renderComment(content, index) {
-        return (
-            <div className="main" key={index}>
-                <p>
-                    <strong>{content.descricao}</strong>
-                </p>
-            </div>
-        )
-    },
-
     render() {
+
+        const payload = this.props.payload || '';
+
         return (
             <div className="main">
-                {this.props.payload ? this.props.payload.map(this.renderComment) : '' }
+                <Table striped bordered condensed hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {payload ? payload.map((content, index)=>{
+                        return <tr key={index}>
+                                <td>{content.descricao}</td>
+                                <td>{content.descricao}</td>
+                                <td>{content.descricao}</td>
+                                <td>{content.descricao}</td>
+                               </tr>;
+                    }) : <tr><td>nenhum resultado foi encontrado</td></tr>}
+
+                    </tbody>
+                </Table>
             </div>
         )
     }
