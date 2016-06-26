@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
+import * as actionCreators from '../actions/defaultActionCreators';
+import * as productActionCreators from '../actions/productActionCreators';
 import Main from './Main';
 
 function mapStateToProps(state) {
@@ -11,7 +12,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch);
+    /**
+     * POR ENQUANTO O bindActionCreators NÃO ACEITA NESTED OBJECTS, POR ISSO TEMOS QUE UTILIZAR O Object.assign
+     * QUANDO VAMOS INFORMAR MAIS DE UM ACTIOCREATOR PARA O BIND
+     * */
+    return bindActionCreators(Object.assign({}, actionCreators, productActionCreators),
+        dispatch);
 }
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);
