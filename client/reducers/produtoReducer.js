@@ -5,6 +5,9 @@ function produto(state = [], action) {
                 ...state,
                 payload :[ ...action.payload ]
             }
+        case 'POST_PRODUTOS':
+            console.log("POSTANDO O FORMULARIO DE PRODUTO");
+        return state
         default:
             break;
     }

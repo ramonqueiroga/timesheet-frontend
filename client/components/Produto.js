@@ -35,22 +35,20 @@ const Produto = React.createClass({
                 <Table striped bordered condensed hover>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Descrição</th>
+                            <th>Título</th>
+                            <th>Páginas</th>
                             <th>Editar</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                    {payload ? payload.map((content, index)=>{
+                    {payload ? payload.map((content, index)=> {
                         return <tr key={index}>
                                 <td>{content.descricao}</td>
-                                <td>{content.descricao}</td>
-                                <td>{content.descricao}</td>
-                                <td>{content.descricao}</td>
+                                <td>{content.titulo}</td>
+                                <td>{content.paginas}</td>
                                 <td>Icone</td>
                                </tr>;
                     }) : <tr><td>nenhum resultado foi encontrado</td></tr>}

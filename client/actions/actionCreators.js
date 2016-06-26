@@ -4,3 +4,10 @@ export function getProdutos(response) {
         payload: response
     }
 }
+
+export function postProdutos(request) {
+    return {
+        type: 'POST_PRODUTOS',
+        payload: request
+    }
+}
