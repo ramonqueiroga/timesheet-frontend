@@ -2,6 +2,8 @@ import React from 'react';
 import rest from 'rest-js';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Produto = React.createClass({
 
@@ -37,6 +39,7 @@ const Produto = React.createClass({
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Username</th>
+                            <th>Editar</th>
                         </tr>
                     </thead>
 
@@ -48,6 +51,7 @@ const Produto = React.createClass({
                                 <td>{content.descricao}</td>
                                 <td>{content.descricao}</td>
                                 <td>{content.descricao}</td>
+                                <td>Icone</td>
                                </tr>;
                     }) : <tr><td>nenhum resultado foi encontrado</td></tr>}
 
