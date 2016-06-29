@@ -1,13 +1,13 @@
-export function postProdutos(request) {
-    return {
-        type: 'POST_PRODUTOS',
-        payload: request
-    }
-};
-
 export function getProdutos(response) {
     return {
         type: 'GET_PRODUTOS',
-        payload: response
+        entities: response
     }
 };
+
+export function getProduto(response) {
+    return {
+        type: 'GET_PRODUTO',
+        entity: response
+    }
+}

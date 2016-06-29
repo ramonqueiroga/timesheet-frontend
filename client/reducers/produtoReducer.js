@@ -3,11 +3,13 @@ function produto(state = [], action) {
         case 'GET_PRODUTOS':
             return {
                 ...state,
-                payload :[ ...action.payload ]
+                entities :[ ...action.entities ]
             }
-        case 'POST_PRODUTOS':
-            console.log("POSTANDO O FORMULARIO DE PRODUTO");
-        return state
+        case 'GET_PRODUTO':
+            return {
+                ...state,
+                entity: { ...action.entity }
+            }
         default:
             break;
     }

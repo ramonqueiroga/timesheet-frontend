@@ -11,13 +11,12 @@ function mapStateToProps(state) {
     }
 }
 
+/**
+ * POR ENQUANTO O bindActionCreators NÃO ACEITA NESTED OBJECTS, POR ISSO TEMOS QUE UTILIZAR O Object.assign
+ * QUANDO VAMOS INFORMAR MAIS DE UM ACTIOCREATOR PARA O BIND
+ * */
 function mapDispatchToProps(dispatch) {
-    /**
-     * POR ENQUANTO O bindActionCreators NÃO ACEITA NESTED OBJECTS, POR ISSO TEMOS QUE UTILIZAR O Object.assign
-     * QUANDO VAMOS INFORMAR MAIS DE UM ACTIOCREATOR PARA O BIND
-     * */
-    return bindActionCreators(Object.assign({}, actionCreators, productActionCreators),
-        dispatch);
+    return bindActionCreators(Object.assign({}, actionCreators, productActionCreators), dispatch);
 }
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);

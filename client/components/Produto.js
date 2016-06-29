@@ -4,31 +4,17 @@ import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
+import { getData } from '../js/rest-call';
 
 const Produto = React.createClass({
 
-    componentDidMount() {
-        const restApi = rest('http://localhost:8080/timesheet/', { crossDomain: true });
-        const { props } = this;
-        let response = {};
-        restApi.get('api/produtos',
-            {defaultFormat: 'json', defaultDataType: 'json', crossDomain: false, cacheLifetime: 50000},
-            function(error, data) {
-            if(error) {
-                response = {
-                    error: true,
-                    message: error
-                }
-            } else {
-                response = data;
-                props.getProdutos(response);
-            }
-        });
+    componentWillMount() {
+        getData('http://localhost:8080/timesheet/', 'api/produtos', this.props.getProdutos)
     },
 
     render() {
 
-        const payload = this.props.payload || '';
+        const payload = this.props.entities || '';
 
         return (
             <div className="main">
@@ -49,7 +35,9 @@ const Produto = React.createClass({
                                 <td>{content.descricao}</td>
                                 <td>{content.titulo}</td>
                                 <td>{content.paginas}</td>
-                                <td>Icone</td>
+                                <td>
+                                    <Link to={`/produtos/${content.id}`}>Icone</Link>
+                                </td>
                                </tr>;
                     }) : <tr><td>nenhum resultado foi encontrado</td></tr>}
 
@@ -62,7 +50,7 @@ const Produto = React.createClass({
 
 function mapStateToProps(state) {
     return {
-        payload: state.produto.payload
+        entities: state.produto.entities
     }
 }
 
