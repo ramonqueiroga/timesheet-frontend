@@ -13,7 +13,8 @@ const ProdutoForm = React.createClass({
     },
 
     handleSubmit(e) {
-        putData('http://localhost:8080/timesheet/', 'api/produtos/'+ this.props.params.produtoId, this.props.postProduto, {id: this.props.params.produtoId, descricao:'FUNCIONANDO', paginas: '250', titulo: 'ramon'});
+        const data = { ...e };
+        putData('http://localhost:8080/timesheet/', 'api/produtos/'+ this.props.params.produtoId, this.props.postProduto, data);
     },
 
     render() {
