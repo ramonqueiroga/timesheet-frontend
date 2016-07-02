@@ -3,7 +3,7 @@ export function getProdutos(response) {
         type: 'GET_PRODUTOS',
         entities: response
     }
-};
+}
 
 export function getProduto(response) {
     return {
@@ -11,3 +11,18 @@ export function getProduto(response) {
         entity: response
     }
 }
+
+export function putProduto(data) {
+    return {
+        type: 'PUT_PRODUTO',
+        data
+    }
+}
+
+export function postProduto(data) {
+    return {
+        type: 'POST_PRODUTO',
+        data
+    }
+}
+

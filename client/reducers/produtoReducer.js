@@ -10,6 +10,16 @@ function produto(state = [], action) {
                 ...state,
                 entity: { ...action.entity }
             }
+        case 'POST_PRODUTO':
+            return {
+                ...state,
+                data: { ...action.data }
+            }
+        case 'PUT_PRODUTO':
+            return {
+                ...state,
+                data: { ...action.data }
+            }
         default:
             break;
     }
