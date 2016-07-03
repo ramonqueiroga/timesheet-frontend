@@ -1,7 +1,7 @@
 import React from 'react';
 import rest from 'rest-js';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { getData } from '../js/rest-call';
@@ -40,9 +40,13 @@ const Produto = React.createClass({
                                 </td>
                                </tr>;
                     }) : <tr><td>nenhum resultado foi encontrado</td></tr>}
-
                     </tbody>
                 </Table>
+                <div>
+                    <Button bsStyle="primary">
+                        <Link to={`/produtos/novo`}>Novo</Link>
+                    </Button>
+                </div>
             </div>
         )
     }

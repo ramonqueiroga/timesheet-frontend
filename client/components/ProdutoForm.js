@@ -4,17 +4,29 @@ import { container } from '../js/divStyleContainer';
 import { connect } from 'react-redux';
 import { getData } from '../js/rest-call';
 import { putData } from '../js/rest-call';
+import { postData } from '../js/rest-call';
 import AbstractForm from './common/AbstractForm';
 
 const ProdutoForm = React.createClass({
 
     componentWillMount() {
-        getData('http://localhost:8080/timesheet/', 'api/produtos/', this.props.getProduto, this.props.params.produtoId)
+        const { produtoId } = this.props.params;
+        if(produtoId === 'novo') {
+            this.props.novoProduto()
+        } else {
+            getData('http://localhost:8080/timesheet/', 'api/produtos/', this.props.getProduto, this.props.params.produtoId)
+        }
     },
 
     handleSubmit(e) {
         const data = { ...e };
-        putData('http://localhost:8080/timesheet/', 'api/produtos/'+ this.props.params.produtoId, this.props.postProduto, data);
+        const { produtoId } = this.props.params;
+        if(produtoId === 'novo') {
+            postData('http://localhost:8080/timesheet/', 'api/produtos/', this.props.postProduto, data)
+        } else {
+            putData('http://localhost:8080/timesheet/', 'api/produtos/'+ this.props.params.produtoId, this.props.putProduto, data)
+        }
+        this.context.router.push('/produtos');
     },
 
     render() {
@@ -24,6 +36,14 @@ const ProdutoForm = React.createClass({
     }
 
 });
+
+/**
+ * Esse contextTypes foi adicionado para poder fazer uso do this.context.router dentro do component.
+ * Sem ele a injeção do contexto não é feita
+ * */
+ProdutoForm.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
     return {

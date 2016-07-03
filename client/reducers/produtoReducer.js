@@ -13,12 +13,33 @@ function produto(state = [], action) {
         case 'POST_PRODUTO':
             return {
                 ...state,
-                data: { ...action.data }
+                entity: { ...action.data },
+                entities: [
+                    ...state.entities,
+                    { ...action.data }
+                ]
             }
         case 'PUT_PRODUTO':
+            let indexChangedValue = '';
+            state.entities.map((content, index) => {
+                if(content.id == action.data.id) {
+                    indexChangedValue = index;
+                    return;
+                }
+            });
             return {
                 ...state,
-                data: { ...action.data }
+                entity: { ...action.data },
+                entities: [
+                    ...state.entities.slice(0, indexChangedValue),
+                    { ...state.entities[indexChangedValue] = { ...action.data } },
+                    ...state.entities.slice(indexChangedValue + 1)
+                ]
+            }
+        case 'NOVO_PRODUTO':
+            return {
+                ...state,
+                entity: {}
             }
         default:
             break;

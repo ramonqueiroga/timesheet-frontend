@@ -26,3 +26,8 @@ export function postProduto(data) {
     }
 }
 
+export function novoProduto() {
+    return {
+        type: 'NOVO_PRODUTO'
+    }
+}

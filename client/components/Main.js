@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Menu from './common/Menu';
+import { RouteTransition } from 'react-router-transition';
 
 const Main = React.createClass({
     render() {
