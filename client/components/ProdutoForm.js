@@ -14,7 +14,16 @@ const ProdutoForm = React.createClass({
         if(produtoId === 'novo') {
             this.props.novoProduto()
         } else {
-            getData('http://localhost:8080/timesheet/', 'api/produtos/', this.props.getProduto, this.props.params.produtoId)
+            //getData('http://localhost:8080/timesheet/', 'api/produtos/', this.props.getProduto, this.props.params.produtoId)
+            if(this.props.entities) {
+                this.props.entities.map((content, index) => {
+                    if(content.id == this.props.params.produtoId) {
+                        this.props.getProduto(content)
+                    }
+                });
+            } else {
+                this.props.getProduto(this.props.entity)
+            }
         }
     },
 
@@ -48,6 +57,7 @@ ProdutoForm.contextTypes = {
 function mapStateToProps(state) {
     return {
         entity: state.produto.entity,
+        entities: state.produto.entities
     }
 }
 
