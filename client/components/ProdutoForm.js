@@ -14,13 +14,9 @@ const ProdutoForm = React.createClass({
         if(produtoId === 'novo') {
             this.props.novoProduto()
         } else {
-            //getData('http://localhost:8080/timesheet/', 'api/produtos/', this.props.getProduto, this.props.params.produtoId)
             if(this.props.entities) {
-                this.props.entities.map((content, index) => {
-                    if(content.id == this.props.params.produtoId) {
-                        this.props.getProduto(content)
-                    }
-                });
+                const entity = this.props.entities.find((entity) => { if(entity.id == this.props.params.produtoId) return entity } );
+                this.props.getProduto(entity);
             } else {
                 this.props.getProduto(this.props.entity)
             }
